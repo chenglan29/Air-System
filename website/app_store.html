@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>应用商店</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background-color: #f5f5f7;
+            color: #333;
+        }
+        header {
+            background: #1a73e8;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 2rem;
+            position: relative;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: none;
+        }
+        .search-results {
+            position: absolute;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 10;
+            display: none;
+        }
+        .search-result-item {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            color: black;
+        }
+        .search-result-item:hover {
+            background: #f5f5f7;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .app-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .app-card:hover {
+            transform: translateY(-5px);
+        }
+        .app-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .app-info {
+            padding: 1rem;
+        }
+        .app-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .app-developer {
+            color: #666;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .app-rating {
+            color: #fbbc05;
+        }
+        footer {
+            background: #202124;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">应用商店</div>
+                <div class="search-bar">
+                    <input type="text" placeholder="搜索应用..." id="searchInput">
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+                <ul class="nav-links">
+                    <!-- <li><a href="#">首页</a></li>
+                    <li><a href="#">我的应用</a></li>
+                    <li><a href="#">账户</a></li> -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="app-grid" id="list">
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <span>&copy; 2025 橙蓝 保留所有权利.</span> |
+            <a href="/" style="color: white;">返回主页</a>
+        </div>
+    </footer>
+
+    <script>
+        const apps = [
+            { name: "Terminal", developer: "橙蓝",icon:"/apps/Terminal-橙蓝/Icon.png" },
+            { name: "Baidu", developer: "橙蓝",icon:"/apps/Baidu-橙蓝/Icon.png" },
+            { name: "FM", developer: "橙蓝",icon:"/apps/FM-橙蓝/Icon.png" },
+            { name: "Info", developer: "橙蓝",icon:"/apps/Info-橙蓝/Icon.png" },
+            { name: "Vue", developer: "Unknown",icon:"/apps/Vue-Unknown/Icon.png" },
+            { name: "Boot", developer: "橙蓝",icon:"/apps/Boot-橙蓝/Icon.png" },
+        ];
+        apps.forEach(item=>{
+            document.getElementById("list").innerHTML += `
+            <div class="app-card" onclick="showAppDetail('${item.name}', '${item.developer}')">
+                <img src="${item.icon}" alt="${item.name}" class="app-image">
+                <div class="app-info">
+                    <div class="app-title">${item.name}</div>
+                    <div class="app-developer">${item.developer}</div>
+                </div>
+            </div>
+            `;
+        })
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const results = apps.filter(app => 
+                app.name.toLowerCase().includes(query) || 
+                app.developer.toLowerCase().includes(query)
+            );
+            
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = '';
+            
+            if(query && results.length > 0) {
+                results.forEach(app => {
+                    const item = document.createElement('div');
+                    item.className = 'search-result-item';
+                    item.textContent = `${app.name} - ${app.developer}`;
+                    item.onclick = () => showAppDetail(app.name, app.developer);
+                    resultsContainer.appendChild(item);
+                });
+                resultsContainer.style.display = 'block';
+            } else {
+                resultsContainer.style.display = 'none';
+            }
+        });
+
+        function showAppDetail(name, developer) {
+            window.location.href = `/detail.html?${name}-${developer}`;
+        }
+    </script>
+</body>
+</html>

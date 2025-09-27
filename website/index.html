@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #1a73e8;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #fbbc05;
+            color: #202124;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .about {
+            /* display: flex; */
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .about img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word;
+            /* 允许长单词换行 */
+            overflow-wrap: break-word;
+            /* 更现代的属性 */
+            white-space: normal;
+            /* 默认值，允许换行 */
+        }
+
+        .faq-question {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .version {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+
+        .version:last-child {
+            border-bottom: none;
+        }
+
+        .version-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: #202124;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        #about img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Air System</div>
+                <ul class="nav-links">
+                    <li><a href="#about">关于</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                    <li><a href="/downloads/">下载</a></li>
+                    <!-- <li><a href="https://community.example.com">社区</a></li> -->
+                    <li><a href="/app_store.html">应用商店</a></li>
+                    <li><a href="/client/index.html">在线客户端</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Air System</h1>
+            <p>一款轻量、易用的服务器面板，满足您的所有需求</p>
+            <a href="#download" class="btn">立即下载</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">关于</h2>
+            <div class="about">
+                Air-System 旨在通过http协议提供一种便于操作且安全的服务器面板<br />
+                <br />
+                您可以很快上手搭建你的服务器或利用我们提供的API编写Air-System软件<br />
+                <br/>
+                <img src="/img/1.png" alt="产品预览图">
+                <img src="/img/2.png" alt="产品预览图">
+                <img src="/img/3.png" alt="产品预览图">
+                <img src="/img/4.png" alt="产品预览图">
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container">
+            <h2 class="section-title">常见问题</h2>
+            <div class="faq-item">
+                <div class="faq-question">Q: 食用指南？</div>
+                <div class="faq-answer">
+                    A: <br/>
+                    1.<a href="/downloads/">下载 Air System</a> ,建议下载 1.X.X-with-recommended-applications.zip	<br/>
+                    2.解压后进入 server/<br/>
+                    3.若您下载的是 1.X.X-with-recommended-applications.zip 或 1.X.X-with-modules.zip 可以直接在命令行输入 node . 启动<br/>
+                    若您下载的是 1.X.X.zip 可以先输入 npm install 进行模块的自动补全再输入 node . 启动<br/>
+                    4.您可以在<a href="/app_store.html">应用商店</a>下载需要的软件，并安装(解压应用至 server/ )<br/>
+                    5.用浏览器打开 client/index.html 或者<a href="/client/index.html">在线客户端</a>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q: 系统要求是什么？</div>
+                <div class="faq-answer">A: 支持大部分可以装 Node.js-v21.7.3 的系统</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q: 如何获得技术支持？</div>
+                <div class="faq-answer">A: 向 chenglan_mc@163.com 发送主题为“[求助]+概要”的邮箱</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q: 如何反馈漏洞，问题和建议？</div>
+                <div class="faq-answer">A: 向 chenglan_mc@163.com 发送主题为“[反馈]+概要”的邮箱</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q: 如何在官网发布软件？</div>
+                <div class="faq-answer">A: 向 chenglan_mc@163.com 发送主题为“[软件发布]+软件名”，具体格式参见Wiki</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="download">
+        <div class="container">
+            <h2 class="section-title">下载</h2>
+            <div style="text-align: center;">
+                <a href="/downloads/Air-System-1.18.6.zip" class="btn" style="margin-left: 1rem;">立即下载最新版</a>
+                <a href="/downloads/" class="btn">全部的下载</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 橙蓝 保留所有权利.</p>
+            <p>广告位招租 chenglan_mc@163.com</p>
+        </div>
+    </footer>
+</body>
+
+</html>

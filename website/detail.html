@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f7;
+            color: #333;
+        }
+
+        header {
+            background: #1a73e8;
+            color: white;
+            padding: 1rem 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .app-detail {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-header {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            margin-right: 2rem;
+        }
+
+        .app-meta h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .app-developer {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .download-btn {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .version-list {
+            margin-top: 2rem;
+        }
+
+        .version-item {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .version-item div p {
+            color: gray;
+        }
+
+        .version-download {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        footer {
+            background: #202124;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="/app_store.html" class="back-btn">← 返回</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="app-detail">
+            <div class="app-header">
+                <img alt="应用图标" class="app-icon" id="app-icon">
+                <div class="app-meta">
+                    <h1 id="appTitle"></h1>
+                    <div class="app-developer" id="appDeveloper"></div>
+                    <button class="download-btn"
+                        onclick="window.location.href = data.versionList[0].path[0][0];">最新版下载</button>
+                </div>
+            </div>
+
+            <div class="app-description">
+                <h2>应用介绍</h2>
+                <p id="description"></p>
+            </div>
+
+            <div class="version-list" id="version-list">
+                <h2>历史版本</h2>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <span>&copy; 2025 橙蓝 保留所有权利.</span> |
+            <a href="/" style="color: white;">返回主页</a>
+        </div>
+    </footer>
+    <script>
+        var script = document.createElement("script");
+        script.src = `/apps/${location.href.split("?")[1]}/index.js`;
+        script.onload = () => {
+            var main = document.createElement("script");
+            main.src = `/main.js`;
+            document.body.appendChild(main);
+        }
+        document.body.appendChild(script);
+    </script>
+</body>
+
+</html>
