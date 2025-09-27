@@ -7,3 +7,5 @@ Air-System 旨在通过http协议提供一种便于操作且安全的服务器�
 
 所涉及的技术栈包括
 Node.js,Python,websocket,node-pty...
+
+Nodejs的演示链接https://www.bilibili.com/video/BV1nbnJzoEiH/
